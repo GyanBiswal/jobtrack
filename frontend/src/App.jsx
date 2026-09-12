@@ -11,7 +11,7 @@ function App() {
   return (
     <>
       <Navbar />
-      <main className="page-container">
+      <main className="max-w-3xl mx-auto p-8">
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/login" element={<Login />} />
