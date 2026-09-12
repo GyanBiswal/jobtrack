@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../api/axios';
 import StatCard from '../components/StatCard';
+import Spinner from '../components/Spinner';
 
 const STATUS_ORDER = ['Wishlist', 'Applied', 'OA', 'Interview', 'Offer', 'Rejected'];
 
@@ -18,7 +19,7 @@ function Dashboard() {
       .finally(() => setLoading(false));
   }, []);
 
-  if (loading) return <p className="text-gray-500">Loading dashboard...</p>;
+  if (loading) return <Spinner />;
   if (error) return <p className="text-red-600">{error}</p>;
 
   return (
@@ -37,7 +38,7 @@ function Dashboard() {
         Total applications: <span className="font-semibold">{stats.total}</span>
       </p>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3 sm:gap-4">
         {STATUS_ORDER.map((status) => (
           <StatCard key={status} label={status} count={stats.byStatus[status]} />
         ))}

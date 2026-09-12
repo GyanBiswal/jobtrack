@@ -11,11 +11,11 @@ function Navbar() {
   };
 
   return (
-    <nav className="flex items-center justify-between px-8 py-4 bg-white border-b border-gray-200">
+    <nav className="flex flex-wrap items-center justify-between gap-y-2 px-4 sm:px-8 py-4 bg-white border-b border-gray-200">
       <Link to="/" className="font-bold text-xl text-gray-900 no-underline">
         JobTrack
       </Link>
-      <div className="flex items-center gap-6">
+      <div className="flex items-center gap-3 sm:gap-6 text-sm">
         {user ? (
           <>
             <Link to="/" className="text-gray-700 no-underline hover:text-gray-900">
@@ -24,10 +24,10 @@ function Navbar() {
             <Link to="/jobs" className="text-gray-700 no-underline hover:text-gray-900">
               Jobs
             </Link>
-            <span className="text-gray-400 text-sm">{user.name}</span>
+            <span className="hidden sm:inline text-gray-400">{user.name}</span>
             <button
               onClick={handleLogout}
-              className="text-sm bg-gray-900 text-white px-3 py-1.5 rounded-md hover:bg-gray-700"
+              className="bg-gray-900 text-white px-3 py-1.5 rounded-md hover:bg-gray-700"
             >
               Logout
             </button>

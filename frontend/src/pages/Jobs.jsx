@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../api/axios';
 import JobCard from '../components/JobCard';
+import Spinner from '../components/Spinner';
 
 const STATUSES = ['All', 'Wishlist', 'Applied', 'OA', 'Interview', 'Offer', 'Rejected'];
 
@@ -78,10 +79,19 @@ function Jobs() {
         </select>
       </div>
 
-      {loading && <p className="text-gray-500">Loading...</p>}
+      {loading && <Spinner />}
       {error && <p className="text-red-600">{error}</p>}
       {!loading && !error && jobs.length === 0 && (
-        <p className="text-gray-500">No applications found.</p>
+        <div className="text-center py-12 border border-dashed border-gray-300 rounded-lg">
+          <p className="text-gray-500 mb-3">
+            {search || statusFilter !== 'All'
+              ? 'No applications match your filters.'
+              : "You haven't added any applications yet."}
+          </p>
+          <Link to="/jobs/new" className="text-gray-900 underline text-sm">
+            Add your first application
+          </Link>
+        </div>
       )}
 
       <div className="flex flex-col gap-3">
